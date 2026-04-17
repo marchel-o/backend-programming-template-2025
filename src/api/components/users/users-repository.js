@@ -13,7 +13,7 @@ async function getUserByEmail(email) {
 }
 
 async function createUser(email, password, fullName) {
-  return Users.create({ email, password, fullName });
+  return Users.create({ email, password, fullName, rolls: 0, history: [] });
 }
 
 async function updateUser(id, email, fullName) {

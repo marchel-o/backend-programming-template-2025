@@ -79,7 +79,9 @@ async function createUser(request, response, next) {
     const success = await usersService.createUser(
       email,
       hashedPassword,
-      fullName
+      fullName,
+      0,
+      []
     );
 
     if (!success) {

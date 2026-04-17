@@ -11,12 +11,33 @@ connectionString.pathname += config.database.name;
 
 mongoose.connect(`${connectionString.toString()}`);
 
+const dbExports = {};
+
 const db = mongoose.connection;
-db.once('open', () => {
+db.once('open', async () => {
   logger.info('Successfully connected to MongoDB');
+
+  try {
+    const { Prize } = dbExports;
+    if (Prize) {
+      const count = await Prize.countDocuments();
+      if (count === 0) {
+        logger.info('Prizes collection is empty. Seeding initial prizes...');
+        await Prize.insertMany([
+          { nama: 'Emas 10 Gram', kuota: 1, sisa: 1 },
+          { nama: 'Smartphone X', kuota: 5, sisa: 5 },
+          { nama: 'Smartwatch Y', kuota: 10, sisa: 10 },
+          { nama: 'Voucher Rp100.000', kuota: 100, sisa: 100 },
+          { nama: 'Pulsa Rp50.000', kuota: 500, sisa: 500 },
+        ]);
+        logger.info('Prizes seeded successfully!');
+      }
+    }
+  } catch (error) {
+    logger.error(error, 'Failed to seed initial prizes data');
+  }
 });
 
-const dbExports = {};
 dbExports.db = db;
 
 const basename = path.basename(__filename);
