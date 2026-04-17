@@ -80,8 +80,7 @@ async function createUser(request, response, next) {
       email,
       hashedPassword,
       fullName,
-      0,
-      []
+      0
     );
 
     if (!success) {

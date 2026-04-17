@@ -39,7 +39,27 @@ async function resetRoll(request, response, next) {
   }
 }
 
+async function getHistory(request, response, next) {
+  try {
+    const { userId } = request.params;
+
+    const success = await gachaService.getHistory(userId);
+
+    if (!success) {
+      throw errorResponder(
+        errorTypes.UNPROCESSABLE_ENTITY,
+        'Failed to update user'
+      );
+    }
+
+    return response.status(200).json(success);
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   roll,
   resetRoll,
+  getHistory,
 };

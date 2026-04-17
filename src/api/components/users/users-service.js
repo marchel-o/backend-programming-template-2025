@@ -14,7 +14,7 @@ async function emailExists(email) {
 }
 
 async function createUser(email, password, fullName) {
-  return usersRepository.createUser(email, password, fullName, 0, []);
+  return usersRepository.createUser(email, password, fullName, 0);
 }
 
 async function updateUser(id, email, fullName) {

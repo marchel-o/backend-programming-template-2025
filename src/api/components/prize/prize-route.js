@@ -9,11 +9,7 @@ module.exports = (app) => {
 
   route.get('/', prizeController.getPrizeList);
 
-  // route.post('/', prizeController.createBook);
+  route.get('/global-history', prizeController.getGlobalHistory);
 
-  // TODO: Get a book by id
-
-  // TODO: Update a book by id
-
-  // TODO: Delete a book by id
+  route.put('/reset', prizeController.resetSisa);
 };

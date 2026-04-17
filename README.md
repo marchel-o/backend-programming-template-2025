@@ -1,18 +1,39 @@
-# Backend Programming Template (2025)
+# Quiz Backend
 
-## Development Setup
+## Endpoints:
 
-1. Fork and clone this repository to your local computer.
-2. Open the project using VS Code.
-3. Install the recommended VS Code extensions: `ESLint` and `Prettier`.
-4. Copy and rename `.env.example` to `.env`. Open `.env` and change the database connection string.
-5. Run `npm install` to install the project dependencies.
-6. Run `npm run dev` to start the dev server.
-7. Test the endpoints in the API client app.
+1. Create User
+    - Endpoint: POST /api/users
+    - Required Input / Parameter: email, full_name, password, confirm_password
 
-## Add New API Endpoints
+2. Search All Users
+    - Endpoint: GET /api/users
+    - Required Input / Parameter: -
 
-1. Create a new database schema in `./src/models`.
-2. Create a new folder in `./src/api/components` (if needed). Remember to separate your codes to repositories, services, controllers, and routes.
-3. Add the new route in `./src/api/routes.js`.
-4. Test your new endpoints in the API client app.
+3. Roll Gacha
+    - Endpoint: POST /api/gacha/:userId
+    - Required Input / Parameter: userId
+
+4. History User
+    - Endpoint: GET /api/gacha/:userId 
+    - Required Input / Parameter: userId
+
+5. Kuota & Sisa Rewards
+    - Endpoint: GET /api/rewards
+    - Required Input / Parameter: -
+
+6. Global History Pemenang
+    - Endpoint: GET /api/rewards/global-history
+    - Required Input / Parameter: -
+
+
+
+## Endpoints Untuk Testing:
+
+1. Reset Roll User
+    - Endpoint: PUT /api/gacha/:userId
+    - Required Input / Parameter: userId
+
+2. Reset Sisa Prize
+    - Endpoint: PUT /api/rewards/reset
+    - Required Input / Parameter: -
